@@ -69,17 +69,7 @@ install_version() {
     mkdir -p "$install_path"
     ls -lah $install_path
     ls -lah $ASDF_DOWNLOAD_PATH
-    case $(uname | tr '[:upper:]' '[:lower:]') in
-    linux*)
-      cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
-      ;;
-    darwin*)
-      cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
-      ;;
-    *)
-      fail "Platform download not supported. Please, open an issue at $REPORT_URL"
-      ;;
-    esac
+    cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
