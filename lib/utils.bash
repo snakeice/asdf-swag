@@ -39,15 +39,15 @@ download_release() {
   filename="$2"
 
   case $(uname | tr '[:upper:]' '[:lower:]') in
-    linux*)
-      local platform="Linux_x86_64.tar.gz"
-      ;;
-    darwin*)
-      local platform="Darwin_x86_64.tar.gz"
-      ;;
-    *)
-      fail "Platform download not supported. Please, open an issue at $REPORT_URL"
-      ;;
+  linux*)
+    local platform="Linux_x86_64.tar.gz"
+    ;;
+  darwin*)
+    local platform="Darwin_x86_64.tar.gz"
+    ;;
+  *)
+    fail "Platform download not supported. Please, open an issue at $REPORT_URL"
+    ;;
   esac
 
   url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${platform}"
