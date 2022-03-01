@@ -73,6 +73,7 @@ install_version() {
       ;;
     darwin*)
       echo $install_path
+      echo $ASDF_DOWNLOAD_PATH
       cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
       ;;
     *)
