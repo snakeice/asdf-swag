@@ -67,8 +67,6 @@ install_version() {
 
   (
     mkdir -p "$install_path"/bin
-    ls -lah $install_path/bin
-    ls -lah $ASDF_DOWNLOAD_PATH
     cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"/bin
 
     local tool_cmd
