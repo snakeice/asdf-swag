@@ -55,6 +55,10 @@ download_release() {
   echo $url
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+
+
+  echo "* Downloading $TOOL_NAME release $version from $url"
+  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
 
 install_version() {
@@ -78,7 +82,7 @@ install_version() {
 
     echo "$TOOL_NAME $version installation was successful!"
   ) || (
-    rm -rf "$install_path"
+#    rm -rf "$install_path"
     fail "An error ocurred while installing $TOOL_NAME $version."
   )
 }
