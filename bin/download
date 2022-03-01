@@ -29,4 +29,4 @@ case $(uname | tr '[:upper:]' '[:lower:]') in
 esac
 
 # Remove the tar.gz file since we don't need to keep it
-rm "$release_file"
+#rm "$release_file"
