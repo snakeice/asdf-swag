@@ -53,7 +53,11 @@ download_release() {
   url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${platform}"
 
   echo "* Downloading $TOOL_NAME release $version from $url"
-  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+#  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+
+  curl "${curl_opts[@]}" -o "$filename" -C - "https://github.com/swaggo/swag/releases/download/v1.8.0/swag_1.8.0_Darwin_x86_64.tar.gz"
+  ls -lah $filename
+
 }
 
 install_version() {
