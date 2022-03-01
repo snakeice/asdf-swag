@@ -66,15 +66,15 @@ install_version() {
   fi
 
   (
-    mkdir -p "$install_path"
-    ls -lah $install_path
+    mkdir -p "$install_path"/bin
+    ls -lah $install_path/bin
     ls -lah $ASDF_DOWNLOAD_PATH
-    cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"/bin
 
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-    chmod +x "$install_path/$tool_cmd"
-    test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+    chmod +x "$install_path/bin/$tool_cmd"
+    test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
     echo "$TOOL_NAME $version installation was successful!"
   ) || (
