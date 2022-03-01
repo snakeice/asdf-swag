@@ -67,9 +67,11 @@ install_version() {
 
   (
     mkdir -p "$install_path"
+    ls -lah $install_path
+    ls -lah $ASDF_DOWNLOAD_PATH
     case $(uname | tr '[:upper:]' '[:lower:]') in
     linux*)
-      cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+      cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
       ;;
     darwin*)
       cp -R "$ASDF_DOWNLOAD_PATH"/* "$install_path"
