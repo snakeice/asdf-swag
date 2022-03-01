@@ -16,7 +16,17 @@ release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
 download_release "$ASDF_INSTALL_VERSION" "$release_file"
 
 #  Extract contents of tar.gz file into the download directory
-tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
+case $(uname | tr '[:upper:]' '[:lower:]') in
+    linux*)
+      tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
+      ;;
+    darwin*)
+      tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $release_file"
+      ;;
+    *)
+      fail "Platform download not supported. Please, open an issue at $REPORT_URL"
+      ;;
+esac
 
 # Remove the tar.gz file since we don't need to keep it
-#rm "$release_file"
+rm "$release_file"

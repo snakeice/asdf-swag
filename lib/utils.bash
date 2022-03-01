@@ -53,11 +53,7 @@ download_release() {
   url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${platform}"
 
   echo "* Downloading $TOOL_NAME release $version from $url"
-#  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
-
-  curl "${curl_opts[@]}" -o "$filename" -C - "https://github.com/swaggo/swag/releases/download/v1.8.0/swag_1.8.0_Darwin_x86_64.tar.gz"
-  ls -lah $filename
-
+  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
 
 install_version() {
@@ -71,8 +67,6 @@ install_version() {
 
   (
     mkdir -p "$install_path"
-    ls -la "$ASDF_DOWNLOAD_PATH"
-    ls -sa $install_path
     cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
     local tool_cmd
@@ -81,7 +75,7 @@ install_version() {
 
     echo "$TOOL_NAME $version installation was successful!"
   ) || (
-#    rm -rf "$install_path"
+    rm -rf "$install_path"
     fail "An error ocurred while installing $TOOL_NAME $version."
   )
 }
