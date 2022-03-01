@@ -67,6 +67,7 @@ install_version() {
 
   (
     mkdir -p "$install_path"
+    echo "!!!!!!!!!!!!!!!!!!"
     cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
     local tool_cmd
