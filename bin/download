@@ -12,11 +12,18 @@ mkdir -p "$ASDF_DOWNLOAD_PATH"
 
 release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
 
-# Download tar.gz file to the download directory
+# Download tar.gz file to the download directory.
 download_release "$ASDF_INSTALL_VERSION" "$release_file"
 
-#  Extract contents of tar.gz file into the download directory
-tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $release_file"
+tar_opts=""
+# The release tarballs for Swag v1.7.1 have a top-level directory, unlike those
+# for any other version.
+if [ "$(compare_versions "$ASDF_INSTALL_VERSION" "1.7.1")" -eq 0 ]; then
+  tar_opts="--strip-components=1"
+fi
 
-# Remove the tar.gz file since we don't need to keep it
+# Extract contents of tar.gz file into the download directory.
+tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" $tar_opts || fail "Could not extract $release_file"
+
+# Remove the tar.gz file since we don't need to keep it.
 rm "$release_file"
