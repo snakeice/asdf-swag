@@ -45,6 +45,7 @@ list_github_tags() {
   # `v\.\?` for compatibility with FreeBSD sed (macOS).
 
   git ls-remote --tags --refs "$GH_REPO" |
+    grep -v 'v1.16.1' # Exclude buggy swag release
     grep -o 'refs/tags/.*' |
     cut -d/ -f3- |
     grep '^v' |
