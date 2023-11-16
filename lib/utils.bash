@@ -122,9 +122,7 @@ download_release() {
     ;;
   Darwin)
     case "$detected_arch" in
-    x86_64) selected_arch="$detected_arch" ;;
-    # Darwin aarch64 call itself arm64.
-    arm64) selected_arch="aarch64" ;;
+    arm64 | x86_64) selected_arch="$detected_arch" ;;
     esac
     ;;
   *)
