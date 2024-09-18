@@ -161,7 +161,8 @@ download_release() {
   fi
 
   if [ "$(compare_versions "$version" "1.7.1")" -eq 0 ] ||
-    [ "$(compare_versions "$version" "1.8.2")" -eq 0 ]; then
+    [ "$(compare_versions "$version" "1.8.2")" -eq 0 ] ||
+    [ "$(compare_versions "$version" "1.16.2")" -eq 1 ]; then
     platform="$(echo "$platform" | tr '[:upper:]' '[:lower:]')"
     case "$selected_arch" in
     i386) selected_arch="386" ;;
